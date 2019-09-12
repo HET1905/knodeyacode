@@ -17,7 +17,7 @@ app.use(routes);
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/knodeyacode",{ useNewUrlParser: true });
 
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://alex:password123@ds253857.mlab.com:53857/heroku_6rw37vks",{ useNewUrlParser: true });
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://hetal:password1@ds161209.mlab.com:61209/heroku_cpp1b5bv",{ useNewUrlParser: true });
 
 
 
@@ -25,3 +25,4 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/knodeyacode",{ 
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+// mongodb://<dbuser>:<dbpassword>@ds161209.mlab.com:61209/heroku_cpp1b5bv
