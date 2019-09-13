@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const db = require("../models");
 
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/knodeyacode");
-mongoose.connect(process.env.MONGODB_URI || "mongodb://alex:password123@ds253857.mlab.com:53857/heroku_6rw37vks");
-
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://alex:password123@ds253857.mlab.com:53857/heroku_6rw37vks");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://hetal:password1@ds161209.mlab.com:61209/heroku_cpp1b5bv");
 const scoreSeed = [
 
 {

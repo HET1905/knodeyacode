@@ -15,9 +15,9 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/knodeyacode",{ useNewUrlParser: true });
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/knodeyacode",{ useNewUrlParser: true });
 
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://hetal:password1@ds161209.mlab.com:61209/heroku_cpp1b5bv",{ useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://hetal:password1@ds161209.mlab.com:61209/heroku_cpp1b5bv",{ useNewUrlParser: true });
 
 
 

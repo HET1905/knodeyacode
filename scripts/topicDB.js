@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/knodeyacode");
-
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/knodeyacode");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://hetal:password1@ds161209.mlab.com:61209/heroku_cpp1b5bv");
 const topicSeed = [
 
     {   topicId:"1",

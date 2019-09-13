@@ -1,6 +1,7 @@
 
-# [Knodeyacode](https://knodeyourcode-react.herokuapp.com/)
-RU-SOM-FSF-FT-06-2019-U-C | Group Project #3
+# [Knodeyacode](https://react-knodeyacode.herokuapp.com/)
+Link : (https://react-knodeyacode.herokuapp.com/)
+
 
 ___
 
