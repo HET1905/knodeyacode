@@ -48,6 +48,17 @@ Our website features:
 6. Leaderboard
 
 
+## How to install
+
+1. Clone the repository to the desire location on your computer.
+2. run the package.json file using the command:
+```
+    npm i
+
+```
+3. Once the dependencies installed use ``` npm start ``` to run the local host. 
+4. Check your browser for the application.
+
 ## Screenshots
 
 * ![Logo](https://github.com/alexlo15/knodeyacode/blob/master/client/src/components/shared/Navigation/logo.png "Logo")
