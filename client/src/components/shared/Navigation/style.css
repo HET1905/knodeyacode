@@ -849,3 +849,32 @@ animation-timing-function: linear;
     position: absolute;
     left: 85%;
 }
+
+@media only screen and (max-width:500px){
+    
+    /* .parallax{
+        padding:0 0 10% 0;
+    } */
+    .parallax {
+        /* background-image: url(https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80); */
+        /* height: 100%; */
+        background-attachment: fixed;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 15% 0 20% 0;
+        text-align: center;
+    }
+    .mainTitle {
+        font-size: 2em;
+    }
+    .parallax .mainTitle img{
+        width:15%;
+    }
+    .mainp {
+        color: #5fa2db;
+    }
+    .about{
+        font-size: 1.5em;
+    }
+}
