@@ -1,14 +1,8 @@
 const router = require("express").Router();
-// const booksController = require("../../controllers/booksController");
 const questController = require("../../controllers/questionController");
-// Matches with "/api/books"
-router.route("/")
-  .get(questController.findAll);
-//   .post(booksController.create);
+// Matches with "/api/questions"
+router.route("/").get(questController.findAll);
 
-router.route('/:topic')
-  .get(questController.findByTopic);
-  
-
+router.route("/:topic").get(questController.findByTopic);
 
 module.exports = router;

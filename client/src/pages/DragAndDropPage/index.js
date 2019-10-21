@@ -1,34 +1,28 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-// import NavBar from "./components/NavBar";
-import Sidebar from "../../components/shared/Navigation"
+import Sidebar from "../../components/shared/Navigation";
 
 import Choice from "../../components/dragdropURL/Choice";
 import Question from "../../components/dragdropURL/Question";
 import Result from "../../components/dragdropURL/Result";
-import AuthUserContext from '../../components/Session/context'
-import { withAuthorization } from '../../components/Session/index'
+import AuthUserContext from "../../components/Session/context";
+import { withAuthorization } from "../../components/Session/index";
 
 import "../../components/shared/Navigation/style.css";
 import "./style.css";
 
-
-let quesAnsArray = [];
-
+// let quesAnsArray = [];
 class DragDropPage extends Component {
-
   static contextType = AuthUserContext;
+
   state = {
-    QuesAnsArray: [],
+    QuesAnsArray: this.props.QuesAnsArray,
+
     buttonClicked: false,
     questionCount: 0,
     score: 0,
     userSelected: "",
     gameFinished: false
-    // choices: {
-    //   notDragged: [],
-    //   dragged: []
-    // }
   };
 
   // =============Drag And Drop Code ========================
@@ -38,7 +32,7 @@ class DragDropPage extends Component {
   };
 
   onDragStart = (ev, choice) => {
-    console.log("dragStart : " + choice);
+    // console.log("dragStart : " + choice);
     ev.dataTransfer.setData("choice", choice);
   };
 
@@ -61,7 +55,7 @@ class DragDropPage extends Component {
       choices
     });
   };
-
+  // ==================================
   generateScore = choice => {
     let rightAnswer = this.state.QuesAnsArray[
       this.state.questionCount
@@ -72,57 +66,60 @@ class DragDropPage extends Component {
         score: this.state.score + 1
       });
     }
-    // console.log('scroe from fun: '+this.state.score);
   };
 
-  // ==================================
+  // componentDidMount() {
+  //   this.loadQuestions();
+  //   console.log("in com did mount");
+  // }
 
-  componentDidMount() {
-    this.loadQuestions();
-  }
+  // componentDidUpdate() {
+  //   this.loadQuestions();
+  //   console.log("in com did update");
+  // }
 
-  loadQuestions = () => {
-    API.getQuestions()
-      .then(res => {
-        res.data.map(item =>
-          quesAnsArray.push({
-            questions: item.question,
-            choice1: item.choice1,
-            choices: [
-              {
-                choice: item.choice1,
-                category: "notDragged"
-              },
-              {
-                choice: item.choice2,
-                category: "notDragged"
-              },
-              {
-                choice: item.choice3,
-                category: "notDragged"
-              }
-            ]
-          })
-        );
-        this.setState({
-          QuesAnsArray: this.randomize(quesAnsArray)
-        });
-      })
-      .catch(err => console.log(err));
-  };
+  // loadQuestions = () => {
+  //   API.getQuestions()
+  //     .then(res => {
+  //       res.data.map(item =>
+  //         quesAnsArray.push({
+  //           questions: item.question,
+  //           choice1: item.choice1,
+  //           choices: [
+  //             {
+  //               choice: item.choice1,
+  //               category: "notDragged"
+  //             },
+  //             {
+  //               choice: item.choice2,
+  //               category: "notDragged"
+  //             },
+  //             {
+  //               choice: item.choice3,
+  //               category: "notDragged"
+  //             }
+  //           ]
+  //         })
+  //       );
+  //       this.setState({
+  //         QuesAnsArray: this.randomize(quesAnsArray)
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
-  randomize = array => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
+  // randomize = array => {
+  //   for (let i = array.length - 1; i > 0; i--) {
+  //     const j = Math.floor(Math.random() * (i + 1));
+  //     [array[i], array[j]] = [array[j], array[i]];
+  //   }
 
-    let newArray = [];
-    for (let i = 0; i < 10; i++) {
-      newArray.push(array[i]);
-    }
-    return newArray;
-  };
+  //   let newArray = [];
+  //   for (let i = 0; i < 10; i++) {
+  //     newArray.push(array[i]);
+  //   }
+  //   return newArray;
+  // };
 
   onSubmitClick = () => {
     if (this.state.questionCount < 9) {
@@ -131,7 +128,7 @@ class DragDropPage extends Component {
         buttonClicked: true,
         questionCount: this.state.questionCount + 1
       });
-      console.log(this.state.questionCount);
+      // console.log(this.state.questionCount);
     } else {
       this.saveScore();
       this.setState({
@@ -141,26 +138,28 @@ class DragDropPage extends Component {
   };
 
   saveScore = () => {
-    console.log("in save score fun");
+    // console.log("in save score fun");
     API.saveScore({
-      userName: this.context.email.substr(0, this.context.email.indexOf('@')),
+      userName: this.context.email.substr(0, this.context.email.indexOf("@")),
       email: this.context.email,
       score: this.state.score
     })
       .then(res => console.log("score saved"))
       .catch(err => console.log(err));
   };
+
   render() {
-
+    // console.log(this.state.QuesAnsArray);
+    const quesAnsArray = this.state.QuesAnsArray;
     console.log(this.state.QuesAnsArray);
-
+    console.log(quesAnsArray.length);
     var choices = {
       notDragged: [],
       dragged: []
     };
     if (quesAnsArray.length > 0 && this.state.questionCount < 10) {
       if (this.state.buttonClicked === false) {
-        // console.log("in button click false");
+        console.log("in button click false");
 
         quesAnsArray[this.state.questionCount].choices.forEach(item => {
           choices[item.category].push(
@@ -175,7 +174,7 @@ class DragDropPage extends Component {
           );
         });
       } else if (this.state.buttonClicked === true) {
-        // console.log("in button click true");
+        console.log("in button click true");
         quesAnsArray[this.state.questionCount].choices.forEach(item => {
           choices[item.category].push(
             <Choice
@@ -192,9 +191,6 @@ class DragDropPage extends Component {
           choices: choices,
           buttonClicked: false
         });
-        // this.setState({
-        //   buttonClicked: false
-        // });
       }
 
       var QuestionComp = (
@@ -204,13 +200,9 @@ class DragDropPage extends Component {
           }
         />
       );
-
-      // questionCount++;
     } else {
       // console.log("data not");
     }
-
-
 
     return (
       <>
@@ -225,11 +217,8 @@ class DragDropPage extends Component {
           </Sidebar>
 
           <div className="DragDrop">
-
             <div id="tablecontainer">
               <div className="row">
-
-
                 <div className="col-12 col-sm-10">
                   <div className="dragDropBorder">
                     <div
@@ -263,14 +252,10 @@ class DragDropPage extends Component {
                             onClick={this.onSubmitClick}
                           >
                             Next
-                      </button>
+                          </button>
                         ) : (
-                            <Result score={this.state.score} />
-                          )
-                          // : <button className="btn btn-primary" onClick={this.onResultClick}>
-                          //   <Link to="/Result" className="resultLink" >Result</Link>
-                          //   </button>
-                        }
+                          <Result score={this.state.score} />
+                        )}
                       </div>
                     </div>
                   </div>
@@ -284,6 +269,6 @@ class DragDropPage extends Component {
   }
 }
 
-const condition = authUser => !!authUser
+const condition = authUser => !!authUser;
 
 export default withAuthorization(condition)(DragDropPage);

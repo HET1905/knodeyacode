@@ -3,40 +3,18 @@ const db = require("../models");
 // Defining methods for the booksController
 module.exports = {
   findAll: function(req, res) {
-    db.Question
-      .find()
+    db.Question.find()
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
-  ,findByTopic: function(req, res) {
+  },
+  findByTopic: function(req, res) {
     // console.log(req.params.topic)
-    let topics  = [];
+    let topics = [];
     topics.push(req.params.topic.split(","));
-    console.log(topics);
-    db.Question
-      .find({topic: {$in: topics[0]} })
+    // console.log(topics);
+    db.Question.find({ topic: { $in: topics[0] } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
- 
-  // ,create: function(req, res) {
-  //   db.Book
-  //     .create(req.body)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-  // update: function(req, res) {
-  //   db.Book
-  //     .findOneAndUpdate({ _id: req.params.id }, req.body)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-  // remove: function(req, res) {
-  //   db.Book
-  //     .findById({ _id: req.params.id })
-  //     .then(dbModel => dbModel.remove())
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // }
 };

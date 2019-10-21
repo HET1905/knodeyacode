@@ -1,16 +1,14 @@
-import React, {useState} from "react";
-import {withRouter} from 'react-router-dom'
-import {withFirebase} from '../../components/Firebase/index'
-import { compose } from 'recompose'
+import React from "react";
+import { withRouter } from "react-router-dom";
+import { withFirebase } from "../../components/Firebase/index";
+import { compose } from "recompose";
 import logo from "./images/logo.png";
 import studyman from "./images/studyicon2.png";
 import matchy from "./images/matchingicon.png";
 import brainy from "./images/brains.png";
 import progress from "./images/progress.PNG";
 
-
 function MainpageBase(props) {
-
   // const [state, setState] = useState({username: '', password: ''})
 
   // const handleInputChange = event => {
@@ -52,31 +50,31 @@ function MainpageBase(props) {
 
         <div className="aboutReasons">
           <div className="reason1">
-          <img src={studyman} alt="Study" />
-          <br></br>
+            <img src={studyman} alt="Study" />
+            <br></br>
             It is a good interactive study tool for students to prepare for test
-            and work on their weaknesses. 
+            and work on their weaknesses.
           </div>
 
-
           <div className="reason2">
-          <img src={matchy} alt="Match" />
-          <br></br>
+            <img src={matchy} alt="Match" />
+            <br></br>
             There are multiple games ranging from matching, to whiteboarding
             that can be used to practice.
           </div>
 
           <div className="reason3">
-          <img src={brainy} alt="Brain" />
-          <br></br>
+            <img src={brainy} alt="Brain" />
+            <br></br>
             It can help all developers from beginners to veterans improve their
             coding skills and knowledge.
           </div>
 
           <div className="reason4">
-          <img src={progress} alt="Progress" />
-          <br></br>
-            Students can hone and achieve their skills while monitoring their progress.
+            <img src={progress} alt="Progress" />
+            <br></br>
+            Students can hone and achieve their skills while monitoring their
+            progress.
           </div>
         </div>
         {/* <div>
@@ -90,6 +88,9 @@ function MainpageBase(props) {
   );
 }
 
-const Mainpage = compose(withRouter, withFirebase)(MainpageBase)
+const Mainpage = compose(
+  withRouter,
+  withFirebase
+)(MainpageBase);
 
 export default Mainpage;

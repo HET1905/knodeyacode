@@ -4,7 +4,7 @@ import ImgContainer from "../../components/flashcardsURL/ImgContainer";
 import FlashCard from "../../components/flashcardsURL/FlashCardArea";
 import API from "../../utils/API";
 import "../../components/shared/Navigation/style.css";
-import Sidebar from "../../components/shared/Navigation"
+import Sidebar from "../../components/shared/Navigation";
 
 let topicSelected = [];
 
@@ -32,7 +32,7 @@ class FlashCardPage extends Component {
     ],
     questionArray: [],
     userName: "5d75870a1c73633b04e65267"
-    };
+  };
 
   // This are drag and drop functionality
   // ====================================================
@@ -41,7 +41,7 @@ class FlashCardPage extends Component {
   };
 
   onDragStart = (ev, id) => {
-    console.log("dragStart : " + id);
+    // console.log("dragStart : " + id);
     ev.dataTransfer.setData("id", id);
   };
 
@@ -59,17 +59,17 @@ class FlashCardPage extends Component {
       ...this.state,
       images
     });
-    console.log("Dropped : " + id);
+    // console.log("Dropped : " + id);
   };
   // ===========================================================
 
   onSubmitClick = () => {
     // alert('click attached');
-    console.log(topicSelected);
+    // console.log(topicSelected);
     if (topicSelected.length > 0) {
       API.searchQuestions(topicSelected)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.setState({
             questionArray: res.data
           });
@@ -77,26 +77,25 @@ class FlashCardPage extends Component {
         .catch(err => console.log(err));
     }
 
-  
-    if(topicSelected === "CSS"){
-      console.log("went thru")
+    if (topicSelected === "CSS") {
+      console.log("went thru");
       const studying = {
         flashcardCSS: true,
         flashcardHTML: false,
         flashcardJS: true
-      }
+      };
 
       API.updateIfStudiedTopic(this.state.userName, studying)
-      .then(res => {
-        console.log(res.data);
-      }).catch(err => console.log(err));
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => console.log(err));
     }
-  
   };
 
   render() {
-    console.log(topicSelected);
-    console.log(topicSelected === "CSS")
+    // console.log(topicSelected);
+    // console.log(topicSelected === "CSS");
     var images = {
       notDragged: [],
       dragged: []
@@ -118,13 +117,9 @@ class FlashCardPage extends Component {
 
     return (
       <div id="Flashpagebox">
-
-
-      
         <Sidebar />
 
         <div className="Flashpage container">
-
           <div className="row">
             {/* <div className="col-12 col-md-2"> */}
 
@@ -135,26 +130,23 @@ class FlashCardPage extends Component {
           </div> */}
 
             <div className="col-12 col-md-10">
-
-              {this.state.questionArray.length > 0
-                ? <FlashCard questionArray={this.state.questionArray} />
-                : <ImgContainer
+              {this.state.questionArray.length > 0 ? (
+                <FlashCard questionArray={this.state.questionArray} />
+              ) : (
+                <ImgContainer
                   onDrop={this.onDrop}
                   onDragOver={this.onDragOver}
                   onSubmitClick={this.onSubmitClick}
                   imagesNotDragged={images.notDragged}
                   imagesDragged={images.dragged}
                 />
-              }
-
+              )}
             </div>
-
           </div>
+        </div>
+      </div>
+    );
+  }
+}
 
-        </div>
-        </div>
-        );
-}
-}
- 
 export default FlashCardPage;

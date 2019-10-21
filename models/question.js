@@ -23,25 +23,11 @@ const questionSchema = new Schema({
     ref: "Topic"
   },
   topic: {
-    type:String,
-    required:true
+    type: String,
+    required: true
   }
-
-  // date: { type: Date, default: Date.now }
 });
 
 const Question = mongoose.model("Question", questionSchema);
 
 module.exports = Question;
-
-// ==================Forgeign key need to be setup=============================
-// Question.associate = function(models) {
-//     // Creates the foreign key from topics in questions
-//     Question.belongsTo(models.Topic, {
-//       foreignKey: {
-//         allowNull: false
-//       }
-//     });
-//   };
-
- 
