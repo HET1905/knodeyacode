@@ -16,7 +16,7 @@ class DragDropPage extends Component {
   static contextType = AuthUserContext;
 
   state = {
-    QuesAnsArray: this.props.QuesAnsArray,
+    // QuesAnsArray: this.props.QuesAnsArray,
 
     buttonClicked: false,
     questionCount: 0,
@@ -38,7 +38,8 @@ class DragDropPage extends Component {
 
   onDrop = (ev, cat) => {
     let choice = ev.dataTransfer.getData("choice");
-    let choices = this.state.QuesAnsArray[this.state.questionCount].choices.map(
+    // This bottom code will set the choices option dragged and not dragged --don't delete it
+    let choices = this.props.QuesAnsArray[this.state.questionCount].choices.map(
       item => {
         item.category = "dragged";
         if (item.choice !== choice) {
@@ -50,14 +51,14 @@ class DragDropPage extends Component {
     );
 
     this.setState({
-      ...this.state,
-      userSelected: choice,
-      choices
+      // ...this.state,
+      userSelected: choice
+      // choices
     });
   };
   // ==================================
   generateScore = choice => {
-    let rightAnswer = this.state.QuesAnsArray[
+    let rightAnswer = this.props.QuesAnsArray[
       this.state.questionCount
     ].choice1.trim();
 
@@ -135,6 +136,14 @@ class DragDropPage extends Component {
         gameFinished: true
       });
     }
+    // This bottom code will reset the choices option dragged and not dragged back to original - don't delete it
+    let choices = this.props.QuesAnsArray[this.state.questionCount].choices.map(
+      item => {
+        item.category = "notDragged";
+
+        return item;
+      }
+    );
   };
 
   saveScore = () => {
@@ -150,13 +159,19 @@ class DragDropPage extends Component {
 
   render() {
     // console.log(this.state.QuesAnsArray);
-    const quesAnsArray = this.state.QuesAnsArray;
-    console.log(this.state.QuesAnsArray);
-    console.log(quesAnsArray.length);
+    const quesAnsArray = this.props.QuesAnsArray;
+    // console.log(this.state.QuesAnsArray);
+    // console.log(quesAnsArray.length);
     var choices = {
       notDragged: [],
       dragged: []
     };
+    // this.setState({
+    //   {QuesAnsArray.choices.category}:"notDragged"
+    // })
+    // this.QuesAnsArray[this.state.questionCount].choices.category = "notDragged";
+
+    console.log("Before button clicked : " + choices.dragged);
     if (quesAnsArray.length > 0 && this.state.questionCount < 10) {
       if (this.state.buttonClicked === false) {
         console.log("in button click false");
@@ -173,6 +188,7 @@ class DragDropPage extends Component {
             </Choice>
           );
         });
+        console.log(choices.dragged);
       } else if (this.state.buttonClicked === true) {
         console.log("in button click true");
         quesAnsArray[this.state.questionCount].choices.forEach(item => {
@@ -187,16 +203,18 @@ class DragDropPage extends Component {
             </Choice>
           );
         });
-        this.setState({
-          choices: choices,
-          buttonClicked: false
-        });
+        // this.setState({
+        //   choices: choices,
+        //   buttonClicked: false
+        // });
+        console.log("----");
+        console.log(choices.dragged);
       }
 
       var QuestionComp = (
         <Question
           questions={
-            this.state.QuesAnsArray[this.state.questionCount].questions
+            this.props.QuesAnsArray[this.state.questionCount].questions
           }
         />
       );

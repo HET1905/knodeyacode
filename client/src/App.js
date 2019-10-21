@@ -92,8 +92,8 @@ class App extends React.Component {
           <Route
             exact
             path="/draganddrop"
-            render={props => (
-              <DragDropPage {...props} QuesAnsArray={this.state.QuesAnsArray} />
+            render={() => (
+              <DragDropPage QuesAnsArray={this.state.QuesAnsArray} />
             )}
           />
 
