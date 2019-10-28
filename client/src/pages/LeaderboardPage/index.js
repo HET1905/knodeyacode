@@ -42,8 +42,8 @@ class Leaderboard extends Component {
             <div className="col-12 col-sm-2"></div>
             <div className="col-12 col-sm-10">
               <div id="borderOuter">
+                <h3 id="leadertitle">LEADERBOARD</h3>
                 <table id="table">
-                  <h3 id="leadertitle">LEADERBOARD</h3>
                   <tbody className="scoreTableBody">
                     <tr>
                       <th>UserName</th>

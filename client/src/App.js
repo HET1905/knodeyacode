@@ -25,16 +25,12 @@ let quesAnsArray = [];
 class App extends React.Component {
   state = {
     QuesAnsArray: []
-    // buttonClicked: false,
-    // questionCount: 0,
-    // score: 0,
-    // userSelected: "",
-    // gameFinished: false
   };
+
   componentDidMount() {
     this.loadQuestions();
-    // console.log("in com did mount");
   }
+
   loadQuestions = () => {
     API.getQuestions()
       .then(res => {
@@ -61,10 +57,11 @@ class App extends React.Component {
         this.setState({
           QuesAnsArray: this.randomize(quesAnsArray)
         });
-        console.log(this.state.QuesAnsArray);
+        // console.log(this.state.QuesAnsArray);
       })
       .catch(err => console.log(err));
   };
+
   randomize = array => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

@@ -158,24 +158,15 @@ class DragDropPage extends Component {
   };
 
   render() {
-    // console.log(this.state.QuesAnsArray);
     const quesAnsArray = this.props.QuesAnsArray;
-    // console.log(this.state.QuesAnsArray);
-    // console.log(quesAnsArray.length);
+
     var choices = {
       notDragged: [],
       dragged: []
     };
-    // this.setState({
-    //   {QuesAnsArray.choices.category}:"notDragged"
-    // })
-    // this.QuesAnsArray[this.state.questionCount].choices.category = "notDragged";
 
-    console.log("Before button clicked : " + choices.dragged);
     if (quesAnsArray.length > 0 && this.state.questionCount < 10) {
       if (this.state.buttonClicked === false) {
-        console.log("in button click false");
-
         quesAnsArray[this.state.questionCount].choices.forEach(item => {
           choices[item.category].push(
             <Choice
@@ -188,9 +179,7 @@ class DragDropPage extends Component {
             </Choice>
           );
         });
-        console.log(choices.dragged);
       } else if (this.state.buttonClicked === true) {
-        console.log("in button click true");
         quesAnsArray[this.state.questionCount].choices.forEach(item => {
           choices[item.category].push(
             <Choice
@@ -207,8 +196,6 @@ class DragDropPage extends Component {
         //   choices: choices,
         //   buttonClicked: false
         // });
-        console.log("----");
-        console.log(choices.dragged);
       }
 
       var QuestionComp = (

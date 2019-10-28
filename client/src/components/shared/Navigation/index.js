@@ -69,7 +69,7 @@ class Sidebar extends React.Component {
               <li>
                 <Link to="/leaderboard">
                   <i className="fa fa-table fa-2x"></i>
-                  <span className="nav-text">Leaderboard</span>
+                  <span className="nav-text">Leader board</span>
                 </Link>
               </li>
             </ul>
